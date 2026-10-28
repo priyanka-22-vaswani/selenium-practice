@@ -31,6 +31,13 @@
     <scope>test</scope>
 </dependency>
 
+<dependency>
+    <groupId>io.rest-assured</groupId>
+    <artifactId>rest-assured</artifactId>
+    <version>5.4.0</version>
+    <scope>test</scope>
+</dependency>
+
   </dependencies>
 
   <build>
@@ -46,10 +53,15 @@
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.3.1</version>
         </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.13.0</version>
-        </plugin>
+
+         <plugin>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.13.0</version>
+    <configuration>
+      <release>17</release>
+      <useModulePath>false</useModulePath>
+    </configuration>
+  </plugin>
         <plugin>
   <artifactId>maven-surefire-plugin</artifactId>
   <version>3.3.0</version>
