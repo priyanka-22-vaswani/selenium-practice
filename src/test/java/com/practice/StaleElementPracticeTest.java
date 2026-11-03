@@ -2,23 +2,16 @@ package com.practice;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import com.practice.base.BaseTest;
 
-public class StaleElementPracticeTest {
+  public class StaleElementPracticeTest extends BaseTest {
 
-    WebDriver driver;
-
-    @BeforeMethod
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-    }
+  
 
     @Test
     public void checkingStaleElement() {
+           WebDriver driver = getDriver();
         driver.get("https://www.google.com");
 
         driver.findElement(By.name("q"));
@@ -28,10 +21,5 @@ public class StaleElementPracticeTest {
         driver.findElement(By.name("q")).sendKeys("Selenium");
     }
 
-    @AfterMethod
-    public void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+   
 }

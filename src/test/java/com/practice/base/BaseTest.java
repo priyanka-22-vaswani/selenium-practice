@@ -3,6 +3,7 @@ package com.practice.base;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import com.practice.utils.ConfigReader;
 
 import com.practice.factory.DriverFactory;
 
@@ -11,7 +12,7 @@ public class BaseTest {
      @BeforeMethod
     public void setUp() {
 
-        DriverFactory.setDriver("chrome");
+        DriverFactory.setDriver(ConfigReader.get("browser"));
 
         DriverFactory.getDriver().manage().window().maximize();
     }
