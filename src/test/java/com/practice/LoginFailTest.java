@@ -12,7 +12,7 @@ public class LoginFailTest extends BaseTest {
     void runTest()
     {
         WebDriver driver = getDriver();
-        driver.get("https://the-internet.herokuapp.com/login");
+        open("/login");
         LoginPage loginPage = new LoginPage(driver);
         loginPage.enterUsername("tomsmith");
         loginPage.enterPassword("SuperSecrePasswor");

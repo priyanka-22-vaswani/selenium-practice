@@ -2,7 +2,6 @@ package com.practice.tests;
 
 import org.testng.annotations.Test;
 import com.practice.base.BaseTest;
-import com.practice.factory.DriverFactory;
 import com.practice.pages.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -13,8 +12,8 @@ public class LoginPOMTest extends BaseTest {
     @Test
     public void loginTest()
     {
-        getDriver().get("https://the-internet.herokuapp.com/login");
-
+        
+        open("/login");
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.login("tomsmith", "SuperSecretPassword!");
 
@@ -30,7 +29,8 @@ public class LoginPOMTest extends BaseTest {
     @Test
     public void invalidLoginTest()
     {
-        getDriver().get("https://the-internet.herokuapp.com/login");
+        
+        open("/login");
         LoginPage loginPage = new LoginPage(getDriver());
         loginPage.login("wronguser", "wrongpassword");
 
@@ -55,8 +55,8 @@ public class LoginPOMTest extends BaseTest {
     @Test(dataProvider = "loginData")
     public void loginDataProviderTest(String username, String password,  String expectedMessage)
     {
-        getDriver().get("https://the-internet.herokuapp.com/login");
-
+        open("/login");
+        
         LoginPage loginPage = new LoginPage(getDriver());
 
         loginPage.login(username, password);

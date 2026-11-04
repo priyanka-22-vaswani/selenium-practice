@@ -26,4 +26,8 @@ public class BaseTest {
      protected WebDriver getDriver() {
         return DriverFactory.getDriver();
     }
+
+        protected void open(String path) {
+        getDriver().get(ConfigReader.get("baseUrl") + path);
+    }
 }

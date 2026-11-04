@@ -16,9 +16,8 @@ public class WaitPracticeTest extends BaseTest {
     @Test
     public void dynamicLoadingTest() {
         WebDriver driver = getDriver();
-        driver.get("https://the-internet.herokuapp.com/dynamic_loading/1");
+        open("/dynamic_loading/1");
         driver.findElement(By.tagName("button")).click();
-
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement helloWorldText = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("finish")));
