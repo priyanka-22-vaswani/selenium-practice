@@ -4,8 +4,6 @@
     <test name="FrameworkTests">
         <classes>
             <class name="com.practice.tests.LoginPOMTest"/>
-            <class name="com.practice.LoginTest"/>
-            <class name="com.practice.LoginFailTest"/>
             <class name="com.practice.WaitPracticeTest"/>
             <class name="com.practice.StaleElementPracticeTest"/>
             <class name="com.practice.ApiTests"/>
