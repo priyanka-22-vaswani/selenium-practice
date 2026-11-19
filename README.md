@@ -1,5 +1,7 @@
 # Selenium Practice Framework
 
+[![Tests](https://github.com/priyanka-22-vaswani/selenium-practice/actions/workflows/tests.yml/badge.svg)](https://github.com/priyanka-22-vaswani/selenium-practice/actions/workflows/tests.yml)
+
 ## Overview
 
 This project is a Selenium WebDriver automation framework built using Java, Selenium WebDriver, TestNG, and Maven. It demonstrates the Page Object Model (POM) design pattern and TestNG suite execution.
