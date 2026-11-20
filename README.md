@@ -1,50 +1,72 @@
-# Selenium Practice Framework
-
 [![Tests](https://github.com/priyanka-22-vaswani/selenium-practice/actions/workflows/tests.yml/badge.svg)](https://github.com/priyanka-22-vaswani/selenium-practice/actions/workflows/tests.yml)
 
-## Overview
+# Selenium Test Automation Framework
 
-This project is a Selenium WebDriver automation framework built using Java, Selenium WebDriver, TestNG, and Maven. It demonstrates the Page Object Model (POM) design pattern and TestNG suite execution.
+A Java test automation framework that covers UI tests (Selenium) and API tests (REST Assured). It uses the Page Object Model, runs in headless Chrome, executes tests in parallel, and runs automatically on every push through GitHub Actions.
 
-## Tech Stack
+## Tech stack
 
-- Java 17
-- Selenium WebDriver 4
-- TestNG
-- Maven
-- VS Code
+Java 17 · Selenium 4 · TestNG · REST Assured · Allure · Maven · GitHub Actions
 
-## Framework Structure
+## What's in the framework
+
+- **Page Object Model:** page classes hold locators and actions, and tests only describe behaviour.
+- **Thread-safe driver management:** a `ThreadLocal` WebDriver factory gives each test its own browser, which makes parallel runs safe.
+- **Configuration:** browser, headless mode and base URL live in `config.properties` and can be overridden from the command line.
+- **Explicit waits** in the page objects to keep UI tests stable.
+- **Data-driven tests** using TestNG data providers.
+- **API tests** with REST Assured for PUT, PATCH, DELETE and GET requests.
+- **Parallel execution** with TestNG (3 threads).
+- **Allure reporting** with step-level annotations.
+- **CI:** a GitHub Actions workflow runs the full suite in headless Chrome on every push and pull request, and saves the test reports.
+
+## Project structure
 
 ```
-src
-├── main
-└── test
-    └── java
-        └── com.practice
-            ├── LoginPage
-            ├── CheckboxPage
-            ├── LoginTest
-            └── LoginFailTest
+src/test/java/com/practice/
+├── base/        BaseTest (browser setup and teardown)
+├── factory/     DriverFactory (ThreadLocal WebDriver)
+├── pages/       LoginPage (page object)
+├── tests/       LoginPOMTest (UI tests)
+├── utils/       ConfigReader (reads config.properties)
+└── ...          API tests and wait/stale-element tests
+src/test/resources/
+├── config.properties
+└── allure.properties
+.github/workflows/tests.yml
+practice-exercises/   (early learning exercises, not part of the framework)
 ```
 
-## Test Coverage
+## How to run
 
-- Login success scenario
-- Login failure scenario
-- Explicit waits
-- Dropdown handling
-- Alerts
-- Multiple windows/tabs
-- Page Object Model (POM)
-- TestNG suite execution using `testng.xml`
+Run the full suite:
 
-## How to Run
-
-```bash
-mvn test
+```
+mvn clean test
 ```
 
-## Author
+Run in headless mode (no browser window):
 
-Priyanka Vaswani
+```
+mvn clean test -Dheadless=true
+```
+
+Point the suite at a different environment:
+
+```
+mvn clean test -DbaseUrl=https://your-environment.example.com
+```
+
+## Reports
+
+After a run, open the Allure report in your browser:
+
+```
+mvn allure:serve
+```
+
+On GitHub, each workflow run also saves the TestNG reports as downloadable artifacts.
+
+## Test targets
+
+UI tests run against [the-internet.herokuapp.com](https://the-internet.herokuapp.com), a public practice site. API tests run against public demo APIs.
