@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import io.qameta.allure.Step;
 
 public class LoginPage {
     private final WebDriver driver;
@@ -38,12 +39,14 @@ public class LoginPage {
         wait.until(ExpectedConditions.elementToBeClickable(loginButton)).click();
     }
 
+    @Step("Log in as {usernameText}")
     public void login(String usernameText, String passwordText) {
         enterUsername(usernameText);
         enterPassword(passwordText);
         clickLogin();
     }
 
+    @Step("Read flash message")
     public String getFlashMessage() {
         return waitForVisible(flashMessage).getText();
     }
